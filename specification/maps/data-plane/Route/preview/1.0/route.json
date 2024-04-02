@@ -566,274 +566,278 @@
       "x-ms-client-name": "FilterSectionType",
       "in": "query",
       "description": "Specifies which of the section types is reported in the route response. <br><br>For example if sectionType = pedestrian the sections which are suited for pedestrians only are returned. Multiple types can be used. The default sectionType refers to the travelMode input. By default travelMode is set to car",
-      "type": "string",
-      "enum": [
-        "carTrain",
-        "country",
-        "ferry",
-        "motorway",
-        "pedestrian",
-        "tollRoad",
-        "tollVignette",
-        "traffic",
-        "travelMode",
-        "tunnel",
-        "carpool",
-        "urban"
-      ],
-      "x-ms-enum": {
-        "name": "SectionType",
-        "modelAsString": true,
-        "values": [
-          {
-            "value": "carTrain",
-            "name": "CarOrTrain",
-            "description": "Sections of the route that are cars or trains."
-          },
-          {
-            "value": "country",
-            "name": "Country",
-            "description": "Sections indicating which countries/regions the route is in."
-          },
-          {
-            "value": "ferry",
-            "name": "Ferry",
-            "description": "Sections of the route that are ferries."
-          },
-          {
-            "value": "motorway",
-            "name": "Motorway",
-            "description": "Sections of the route that are motorways."
-          },
-          {
-            "value": "pedestrian",
-            "name": "Pedestrian",
-            "description": "Sections of the route that are only suited for pedestrians."
-          },
-          {
-            "value": "tollRoad",
-            "name": "TollRoad",
-            "description": "Sections of the route that require a toll to be payed."
-          },
-          {
-            "value": "tollVignette",
-            "name": "TollVignette",
-            "description": "Sections of the route that require a toll vignette to be present."
-          },
-          {
-            "value": "traffic",
-            "name": "Traffic",
-            "description": "Sections of the route that contain traffic information."
-          },
-          {
-            "value": "travelMode",
-            "name": "TravelMode",
-            "description": "Sections in relation to the request parameter `travelMode`."
-          },
-          {
-            "value": "tunnel",
-            "name": "Tunnel",
-            "description": "Sections of the route that are tunnels."
-          },
-          {
-            "value": "carpool",
-            "name": "Carpool",
-            "description": "Sections of the route that require use of carpool (HOV/High Occupancy Vehicle) lanes."
-          },
-          {
-            "value": "urban",
-            "name": "Urban",
-            "description": "Sections of the route that are located within urban areas."
-          }
-        ]
+      "type": "array",
+      "collectionFormat": "multi",
+      "items": {
+        "type": "string",
+        "enum": [
+          "carTrain",
+          "country",
+          "ferry",
+          "motorway",
+          "pedestrian",
+          "tollRoad",
+          "tollVignette",
+          "traffic",
+          "travelMode",
+          "tunnel",
+          "carpool",
+          "urban"
+        ],
+        "x-ms-enum": {
+          "name": "SectionType",
+          "modelAsString": true,
+          "values": [
+            {
+              "value": "carTrain",
+              "name": "CarOrTrain",
+              "description": "Sections of the route that are cars or trains."
+            },
+            {
+              "value": "country",
+              "name": "Country",
+              "description": "Sections indicating which countries/regions the route is in."
+            },
+            {
+              "value": "ferry",
+              "name": "Ferry",
+              "description": "Sections of the route that are ferries."
+            },
+            {
+              "value": "motorway",
+              "name": "Motorway",
+              "description": "Sections of the route that are motorways."
+            },
+            {
+              "value": "pedestrian",
+              "name": "Pedestrian",
+              "description": "Sections of the route that are only suited for pedestrians."
+            },
+            {
+              "value": "tollRoad",
+              "name": "TollRoad",
+              "description": "Sections of the route that require a toll to be payed."
+            },
+            {
+              "value": "tollVignette",
+              "name": "TollVignette",
+              "description": "Sections of the route that require a toll vignette to be present."
+            },
+            {
+              "value": "traffic",
+              "name": "Traffic",
+              "description": "Sections of the route that contain traffic information."
+            },
+            {
+              "value": "travelMode",
+              "name": "TravelMode",
+              "description": "Sections in relation to the request parameter `travelMode`."
+            },
+            {
+              "value": "tunnel",
+              "name": "Tunnel",
+              "description": "Sections of the route that are tunnels."
+            },
+            {
+              "value": "carpool",
+              "name": "Carpool",
+              "description": "Sections of the route that require use of carpool (HOV/High Occupancy Vehicle) lanes."
+            },
+            {
+              "value": "urban",
+              "name": "Urban",
+              "description": "Sections of the route that are located within urban areas."
+            }
+          ]
+        }
       },
-      "x-ms-parameter-location": "method"
-    },
-    "ComputeBestOrder": {
-      "name": "computeBestOrder",
-      "x-ms-client-name": "computeBestWaypointOrder",
-      "in": "query",
-      "description": "Re-order the route waypoints using a fast heuristic algorithm to reduce the route length. Yields best results when used in conjunction with routeType _shortest_. Notice that origin and destination are excluded from the optimized waypoint indices. To include origin and destination in the response, please increase all the indices by 1 to account for the origin, and then add the destination as the final index. Possible values are true or false. True computes a better order if possible, but is not allowed to be used in conjunction with maxAlternatives value greater than 0 or in conjunction with circle waypoints. False will use the locations in the given order and not allowed to be used in conjunction with routeRepresentation _none_.",
-      "type": "boolean",
-      "x-ms-parameter-location": "method"
-    },
-    "RouteRepresentationForBestOrder": {
-      "name": "routeRepresentation",
-      "x-ms-client-name": "routeRepresentationForBestOrder",
-      "in": "query",
-      "description": "Specifies the representation of the set of routes provided as response. This parameter value can only be used in conjunction with computeBestOrder=true.",
-      "type": "string",
-      "enum": [
-        "polyline",
-        "summaryOnly",
-        "none"
-      ],
-      "x-ms-enum": {
-        "name": "RouteRepresentationForBestOrder",
-        "modelAsString": true,
-        "values": [
-          {
-            "value": "polyline",
-            "description": "Includes route geometry in the response."
-          },
-          {
-            "value": "summaryOnly",
-            "description": "Summary as per polyline but excluding the point geometry elements for the routes in the response."
-          },
-          {
-            "value": "none",
-            "description": "Includes only the optimized waypoint indices but does not include the route geometry in the response."
-          }
-        ]
+        "x-ms-parameter-location": "method"
       },
-      "x-ms-parameter-location": "method"
-    },
-    "ComputeTravelTime": {
-      "name": "computeTravelTimeFor",
-      "x-ms-client-name": "computeTravelTime",
-      "in": "query",
-      "description": "Specifies whether to return additional travel times using different types of traffic information (none, historic, live) as well as the default best-estimate travel time.",
-      "type": "string",
-      "enum": [
-        "none",
-        "all"
-      ],
-      "x-ms-enum": {
-        "name": "ComputeTravelTime",
-        "modelAsString": true,
-        "values": [
-          {
-            "value": "none",
-            "description": "Does not compute additional travel times."
-          },
-          {
-            "value": "all",
-            "description": "Computes travel times for all types of traffic information and specifies all results in the fields noTrafficTravelTimeInSeconds, historicTrafficTravelTimeInSeconds and liveTrafficIncidentsTravelTimeInSeconds being included in the summaries in the route response."
-          }
-        ]
+      "ComputeBestOrder": {
+        "name": "computeBestOrder",
+        "x-ms-client-name": "computeBestWaypointOrder",
+        "in": "query",
+        "description": "Re-order the route waypoints using a fast heuristic algorithm to reduce the route length. Yields best results when used in conjunction with routeType _shortest_. Notice that origin and destination are excluded from the optimized waypoint indices. To include origin and destination in the response, please increase all the indices by 1 to account for the origin, and then add the destination as the final index. Possible values are true or false. True computes a better order if possible, but is not allowed to be used in conjunction with maxAlternatives value greater than 0 or in conjunction with circle waypoints. False will use the locations in the given order and not allowed to be used in conjunction with routeRepresentation _none_.",
+        "type": "boolean",
+        "x-ms-parameter-location": "method"
       },
-      "x-ms-parameter-location": "method"
-    },
-    "VehicleHeading": {
-      "name": "vehicleHeading",
-      "in": "query",
-      "description": "The directional heading of the vehicle in degrees starting at true North and continuing in clockwise direction. North is 0 degrees, east is 90 degrees, south is 180 degrees, west is 270 degrees. Possible values 0-359",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 359,
-      "x-ms-parameter-location": "method"
-    },
-    "Report": {
-      "name": "report",
-      "in": "query",
-      "description": "Specifies which data should be reported for diagnosis purposes. The only possible value is _effectiveSettings_. Reports the effective parameters or data used when calling the API. In the case of defaulted parameters the default will be reflected where the parameter was not specified by the caller.",
-      "type": "string",
-      "x-ms-parameter-location": "method",
-      "enum": [
-        "effectiveSettings"
-      ],
-      "x-ms-enum": {
-        "name": "Report",
-        "modelAsString": true,
-        "values": [
-          {
-            "value": "effectiveSettings",
-            "description": "Reports the effective parameters or data used when calling the API."
-          }
-        ]
+      "RouteRepresentationForBestOrder": {
+        "name": "routeRepresentation",
+        "x-ms-client-name": "routeRepresentationForBestOrder",
+        "in": "query",
+        "description": "Specifies the representation of the set of routes provided as response. This parameter value can only be used in conjunction with computeBestOrder=true.",
+        "type": "string",
+        "enum": [
+          "polyline",
+          "summaryOnly",
+          "none"
+        ],
+        "x-ms-enum": {
+          "name": "RouteRepresentationForBestOrder",
+          "modelAsString": true,
+          "values": [
+            {
+              "value": "polyline",
+              "description": "Includes route geometry in the response."
+            },
+            {
+              "value": "summaryOnly",
+              "description": "Summary as per polyline but excluding the point geometry elements for the routes in the response."
+            },
+            {
+              "value": "none",
+              "description": "Includes only the optimized waypoint indices but does not include the route geometry in the response."
+            }
+          ]
+        },
+        "x-ms-parameter-location": "method"
+      },
+      "ComputeTravelTime": {
+        "name": "computeTravelTimeFor",
+        "x-ms-client-name": "computeTravelTime",
+        "in": "query",
+        "description": "Specifies whether to return additional travel times using different types of traffic information (none, historic, live) as well as the default best-estimate travel time.",
+        "type": "string",
+        "enum": [
+          "none",
+          "all"
+        ],
+        "x-ms-enum": {
+          "name": "ComputeTravelTime",
+          "modelAsString": true,
+          "values": [
+            {
+              "value": "none",
+              "description": "Does not compute additional travel times."
+            },
+            {
+              "value": "all",
+              "description": "Computes travel times for all types of traffic information and specifies all results in the fields noTrafficTravelTimeInSeconds, historicTrafficTravelTimeInSeconds and liveTrafficIncidentsTravelTimeInSeconds being included in the summaries in the route response."
+            }
+          ]
+        },
+        "x-ms-parameter-location": "method"
+      },
+      "VehicleHeading": {
+        "name": "vehicleHeading",
+        "in": "query",
+        "description": "The directional heading of the vehicle in degrees starting at true North and continuing in clockwise direction. North is 0 degrees, east is 90 degrees, south is 180 degrees, west is 270 degrees. Possible values 0-359",
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 359,
+        "x-ms-parameter-location": "method"
+      },
+      "Report": {
+        "name": "report",
+        "in": "query",
+        "description": "Specifies which data should be reported for diagnosis purposes. The only possible value is _effectiveSettings_. Reports the effective parameters or data used when calling the API. In the case of defaulted parameters the default will be reflected where the parameter was not specified by the caller.",
+        "type": "string",
+        "x-ms-parameter-location": "method",
+        "enum": [
+          "effectiveSettings"
+        ],
+        "x-ms-enum": {
+          "name": "Report",
+          "modelAsString": true,
+          "values": [
+            {
+              "value": "effectiveSettings",
+              "description": "Reports the effective parameters or data used when calling the API."
+            }
+          ]
+        }
+      },
+      "Traffic": {
+        "name": "traffic",
+        "x-ms-client-name": "useTrafficData",
+        "in": "query",
+        "description": "Possible values: \n  * true - Do consider all available traffic information during routing\n  * false - Ignore current traffic data during routing. Note that although the current traffic data is ignored \n  during routing, the effect of historic traffic on effective road speeds is still incorporated.",
+        "type": "boolean",
+        "x-ms-parameter-location": "method"
+      },
+      "AlternativeRouteType": {
+        "name": "alternativeType",
+        "in": "query",
+        "description": "Controls the optimality, with respect to the given planning criteria, of the calculated alternatives compared to the reference route.",
+        "type": "string",
+        "enum": [
+          "anyRoute",
+          "betterRoute"
+        ],
+        "x-ms-enum": {
+          "name": "AlternativeRouteType",
+          "modelAsString": true,
+          "values": [
+            {
+              "value": "anyRoute",
+              "description": "Allow any alternative route to be returned irrespective of how it compares to the reference route in terms of optimality."
+            },
+            {
+              "value": "betterRoute",
+              "description": "Return an alternative route only if it is better than the reference route according to the given planning criteria."
+            }
+          ]
+        },
+        "x-ms-parameter-location": "method"
+      },
+      "RouteInstructionsType": {
+        "name": "instructionsType",
+        "in": "query",
+        "description": "If specified, guidance instructions will be returned. Note that the instructionsType parameter cannot be used in conjunction with routeRepresentation=none",
+        "type": "string",
+        "enum": [
+          "coded",
+          "text",
+          "tagged"
+        ],
+        "x-ms-enum": {
+          "name": "RouteInstructionsType",
+          "modelAsString": true,
+          "values": [
+            {
+              "value": "coded",
+              "description": "Returns raw instruction data without human-readable messages."
+            },
+            {
+              "value": "text",
+              "description": "Returns raw instructions data with human-readable messages in plain text."
+            },
+            {
+              "value": "tagged",
+              "description": "Returns raw instruction data with tagged human-readable messages to permit formatting. A human-readable message is built up from repeatable identified elements. These are tagged to allow client applications to format them correctly. The following message components are tagged when instructionsType=tagged: street, roadNumber, signpostText, exitNumber, roundaboutExitNumber.\n\nExample of tagged 'Turn left' message:​\n\n```\nTurn left onto <roadNumber>A4</roadNumber>/<roadNumber>E19</roadNumber>\ntowards <signpostText>Den Haag</signpostText>\n```"
+            }
+          ]
+        },
+        "x-ms-parameter-location": "method"
+      },
+      "MatrixId": {
+        "name": "format",
+        "x-ms-client-name": "matrixId",
+        "description": "Matrix id received after the Matrix Route request was accepted successfully.",
+        "type": "string",
+        "in": "path",
+        "required": true,
+        "x-ms-parameter-location": "method"
+      },
+      "BatchId": {
+        "name": "format",
+        "x-ms-client-name": "batchId",
+        "description": "Batch id for querying the operation.",
+        "type": "string",
+        "in": "path",
+        "required": true,
+        "x-ms-parameter-location": "method"
+      },
+      "Query": {
+        "name": "query",
+        "x-ms-client-name": "routePoints",
+        "in": "query",
+        "description": "The Coordinates through which the route is calculated, delimited by a colon.  A minimum of two coordinates is required.  The first one is the origin and the last is the destination of the route. Optional coordinates in-between act as WayPoints in the route.  You can pass up to 150 WayPoints.",
+        "required": true,
+        "type": "string",
+        "x-ms-parameter-location": "method"
       }
     },
-    "Traffic": {
-      "name": "traffic",
-      "x-ms-client-name": "useTrafficData",
-      "in": "query",
-      "description": "Possible values: \n  * true - Do consider all available traffic information during routing\n  * false - Ignore current traffic data during routing. Note that although the current traffic data is ignored \n  during routing, the effect of historic traffic on effective road speeds is still incorporated.",
-      "type": "boolean",
-      "x-ms-parameter-location": "method"
-    },
-    "AlternativeRouteType": {
-      "name": "alternativeType",
-      "in": "query",
-      "description": "Controls the optimality, with respect to the given planning criteria, of the calculated alternatives compared to the reference route.",
-      "type": "string",
-      "enum": [
-        "anyRoute",
-        "betterRoute"
-      ],
-      "x-ms-enum": {
-        "name": "AlternativeRouteType",
-        "modelAsString": true,
-        "values": [
-          {
-            "value": "anyRoute",
-            "description": "Allow any alternative route to be returned irrespective of how it compares to the reference route in terms of optimality."
-          },
-          {
-            "value": "betterRoute",
-            "description": "Return an alternative route only if it is better than the reference route according to the given planning criteria."
-          }
-        ]
-      },
-      "x-ms-parameter-location": "method"
-    },
-    "RouteInstructionsType": {
-      "name": "instructionsType",
-      "in": "query",
-      "description": "If specified, guidance instructions will be returned. Note that the instructionsType parameter cannot be used in conjunction with routeRepresentation=none",
-      "type": "string",
-      "enum": [
-        "coded",
-        "text",
-        "tagged"
-      ],
-      "x-ms-enum": {
-        "name": "RouteInstructionsType",
-        "modelAsString": true,
-        "values": [
-          {
-            "value": "coded",
-            "description": "Returns raw instruction data without human-readable messages."
-          },
-          {
-            "value": "text",
-            "description": "Returns raw instructions data with human-readable messages in plain text."
-          },
-          {
-            "value": "tagged",
-            "description": "Returns raw instruction data with tagged human-readable messages to permit formatting. A human-readable message is built up from repeatable identified elements. These are tagged to allow client applications to format them correctly. The following message components are tagged when instructionsType=tagged: street, roadNumber, signpostText, exitNumber, roundaboutExitNumber.\n\nExample of tagged 'Turn left' message:​\n\n```\nTurn left onto <roadNumber>A4</roadNumber>/<roadNumber>E19</roadNumber>\ntowards <signpostText>Den Haag</signpostText>\n```"
-          }
-        ]
-      },
-      "x-ms-parameter-location": "method"
-    },
-    "MatrixId": {
-      "name": "format",
-      "x-ms-client-name": "matrixId",
-      "description": "Matrix id received after the Matrix Route request was accepted successfully.",
-      "type": "string",
-      "in": "path",
-      "required": true,
-      "x-ms-parameter-location": "method"
-    },
-    "BatchId": {
-      "name": "format",
-      "x-ms-client-name": "batchId",
-      "description": "Batch id for querying the operation.",
-      "type": "string",
-      "in": "path",
-      "required": true,
-      "x-ms-parameter-location": "method"
-    },
-    "Query": {
-      "name": "query",
-      "x-ms-client-name": "routePoints",
-      "in": "query",
-      "description": "The Coordinates through which the route is calculated, delimited by a colon.  A minimum of two coordinates is required.  The first one is the origin and the last is the destination of the route. Optional coordinates in-between act as WayPoints in the route.  You can pass up to 150 WayPoints.",
-      "required": true,
-      "type": "string",
-      "x-ms-parameter-location": "method"
-    }
-  },
   "paths": {
     "/route/matrix/{format}": {
       "post": {
