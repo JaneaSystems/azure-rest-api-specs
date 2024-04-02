@@ -2168,7 +2168,7 @@
         },
         "roundaboutExitNumber": {
           "description": "This indicates which exit to take at a roundabout.",
-          "type": "string",
+          "type": "integer",
           "readOnly": true
         },
         "possibleCombineWithNext": {
